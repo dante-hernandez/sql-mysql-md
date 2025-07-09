@@ -1,0 +1,42 @@
+-- Diagrama relacional a SQL de Doctor
+
+-- Crear base de datos de un doctor
+CREATE DATABASE Doctor;
+
+
+-- Utilizar base de datos de un doctor
+USE Doctor;
+
+-- Crear tabla de Doctor
+CREATE TABLE Doc
+(
+idDoc int primary key,
+nom varchar(30) not null,
+ape1 varchar(30) not null,
+ape2 varchar(30) not null,
+
+);
+
+
+-- Crear tabla de paciente
+CREATE TABLE Paciente(
+idPaciente int primary key,
+nomP varchar(30) not null,
+ape1 varchar(30) not null,
+ape2 varchar(30) not null,
+);
+
+
+-- Crear TABLE de Atender
+CREATE TABLE Atiende
+(
+idDoc int not null,
+idPaciente int not null,
+diagnostico nvarchar(500) not null,
+fch DATE,
+PRIMARY KEY (idDoc, idPaciente, fch),
+FOREIGN KEY (idDoc)
+REFERENCES Doc(idDoc),
+FOREIGN KEY (idPaciente)
+REFERENCES Paciente(idPaciente)
+);

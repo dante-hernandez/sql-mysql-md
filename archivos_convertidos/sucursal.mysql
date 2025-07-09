@@ -1,0 +1,51 @@
+-- Diagrama Relacional a SQL de una Sucursal
+
+-- CREAR BASE DE DATOS DE UNA SUCURSAL
+CREATE DATABASE Sucursal;
+GO
+
+-- Utilizar base de datos de la sucursal
+USE Sucursal;
+
+-- Crear tabla de Sucursal
+CREATE TABLE Sucursal1
+(
+idSucursal int primary key,
+nom varchar(30) not null,
+ubicacion varchar(30) not null,
+
+);
+GO
+
+-- Crear tabla de Clientes
+CREATE TABLE Clientes
+(
+idCliente int primary key,
+nomC varchar(30) not null,
+ape1 varchar(30) not null,
+ape2 varchar(30) not null,
+idcurp char(12) not null,
+calle nvarchar(50) not null,
+id int not null,
+ciudad varchar(30) not null,
+CONSTRAINT unique_idcurp
+UNIQUE(idcurp)
+);
+GO
+
+-- Crear tabla de Vehiculo
+CREATE TABLE Vehiculo
+(
+idVehiculo int primary key,
+plc nvarchar(10) not null,
+mrc nvarchar(30) not null,
+mdl nvarchar(10) not null,
+anio int not null,
+idCliente int not null,
+idSucursal int not null,
+FOREIGN KEY (idCliente)
+REFERENCES Clientes(idCliente),
+FOREIGN KEY (idSucursal)
+REFERENCES Sucursal1(idSucursal)
+);
+GO

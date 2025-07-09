@@ -1,0 +1,39 @@
+-- Diagrama Relacional a SQL de Inscripcion
+
+-- Crear Base de datos de Curso
+CREATE DATABASE Escuela;
+
+
+-- Utilizar base de datos de la Escuela
+USE Escuela;
+
+-- Crear tabla Estudiante
+CREATE TABLE Estudiante
+(
+idEstudiante int primary key,
+nomP varchar(30) not null,
+ape1 varchar(30) not null,
+ape2 varchar(30) not null,
+idMatricula int not null,
+);
+
+
+-- Crear tabla del Curso
+CREATE TABLE Curso(
+idCurso int primary key,
+nom varchar(30) not null,
+codigo int not null
+);
+
+
+-- Crear tabla de Inscripcion
+CREATE TABLE Inscripcion(
+idCurso int,
+idEstudiante int,
+fchInscripcion DATE,
+PRIMARY KEY (idCurso, idEstudiante),
+FOREIGN KEY(idCurso)
+REFERENCES Curso(idCurso),
+FOREIGN KEY (idEstudiante)
+REFERENCES Estudiante(idEstudiante)
+);
